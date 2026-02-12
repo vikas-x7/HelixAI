@@ -22,7 +22,7 @@ export async function GET() {
 
     // Fetch related data
     const [experiences, skills, projects, education, activities] =
-      await sql.transaction([
+      await Promise.all([
         sql`SELECT * FROM experiences WHERE portfolio_id = ${portfolioId} ORDER BY display_order ASC`,
         sql`SELECT * FROM skills WHERE portfolio_id = ${portfolioId} ORDER BY display_order ASC`,
         sql`SELECT * FROM projects WHERE portfolio_id = ${portfolioId} ORDER BY display_order ASC`,
@@ -123,7 +123,7 @@ export async function PUT(request) {
 
     // Handle nested data with delete and re-insert strategy
     // Delete existing entries
-    await sql.transaction([
+    await Promise.all([
       sql`DELETE FROM experiences WHERE portfolio_id = ${id}`,
       sql`DELETE FROM skills WHERE portfolio_id = ${id}`,
       sql`DELETE FROM projects WHERE portfolio_id = ${id}`,

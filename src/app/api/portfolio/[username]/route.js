@@ -16,7 +16,7 @@ export async function GET(request, { params }) {
     const portfolioId = portfolio.id;
 
     const [experiences, skills, projects, education, activities] =
-      await sql.transaction([
+      await Promise.all([
         sql`SELECT * FROM experiences WHERE portfolio_id = ${portfolioId} ORDER BY display_order ASC`,
         sql`SELECT * FROM skills WHERE portfolio_id = ${portfolioId} ORDER BY display_order ASC`,
         sql`SELECT * FROM projects WHERE portfolio_id = ${portfolioId} ORDER BY display_order ASC`,
