@@ -3,7 +3,7 @@ import { SignUp } from "@clerk/clerk-react";
 
 export default function SignUpPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0D0E12] font-inter p-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#fcfcfc] font-inter p-4">
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         .font-inter { font-family: 'Inter', sans-serif; }

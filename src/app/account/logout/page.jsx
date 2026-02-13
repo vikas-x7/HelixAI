@@ -9,7 +9,7 @@ export default function LogoutPage() {
   }, [signOut]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0D0E12] text-white">
+    <div className="min-h-screen flex items-center justify-center bg-[#ffffff] text-black">
       <div className="text-center">
         <h1 className="text-2xl font-bold mb-4">Signing you out...</h1>
         <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin mx-auto"></div>

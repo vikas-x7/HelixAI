@@ -12,7 +12,6 @@ import { ActivitiesTab } from "@/components/BuilderPage/ActivitiesTab";
 import { PreviewModal } from "@/components/BuilderPage/PreviewModal";
 
 export default function BuilderPage() {
-  const theme = useTheme();
   const [activeTab, setActiveTab] = useState("profile");
   const [showPreview, setShowPreview] = useState(false);
 
@@ -48,8 +47,8 @@ export default function BuilderPage() {
 
   if (isLoading) {
     return (
-      <div className="h-screen flex items-center justify-center bg-[#0D0E12] text-white">
-        Loading...
+      <div className="h-screen flex items-center justify-center bg-white">
+        <div className="text-sm text-black/40">Loading...</div>
       </div>
     );
   }
@@ -67,7 +66,7 @@ export default function BuilderPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0D0E12] text-white font-inter flex flex-col md:flex-row">
+    <div className="min-h-screen bg-white text-black flex flex-col md:flex-row">
       <Sidebar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -77,10 +76,18 @@ export default function BuilderPage() {
         username={username}
       />
 
-      <div className="flex-1 p-8 overflow-y-auto max-h-screen">
+      <div className="flex-1 p-8 overflow-y-auto max-h-screen bg-black/[0.01]">
         <div className="max-w-3xl mx-auto">
-          <div className="mb-10 flex justify-between items-center">
-            <h1 className="text-3xl font-bold capitalize">{activeTab}</h1>
+          <div className="mb-8 pb-6 border-b border-black/10">
+            <h1 className="text-xl font-bold capitalize">{activeTab}</h1>
+            <p className="text-xs text-black/40 mt-1">
+              {activeTab === "profile" && "Manage your basic information and profile settings"}
+              {activeTab === "experience" && "Add your work experience and professional history"}
+              {activeTab === "skills" && "Showcase your skills and expertise"}
+              {activeTab === "projects" && "Highlight your best projects and work"}
+              {activeTab === "education" && "Add your educational background"}
+              {activeTab === "activities" && "Include your extracurricular activities"}
+            </p>
           </div>
 
           {activeTab === "profile" && (
@@ -144,11 +151,6 @@ export default function BuilderPage() {
           onClose={() => setShowPreview(false)}
         />
       )}
-
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-        .font-inter { font-family: 'Inter', sans-serif; }
-      `}</style>
     </div>
   );
 }
